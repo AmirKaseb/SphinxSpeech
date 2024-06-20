@@ -8,7 +8,7 @@ Recognizing speech in Egyptian Arabic presents unique challenges due to its spec
 ![Example Image](https://i.imgur.com/vMtlVrO.png)
 
 
-## Framework Used 
+### Framework Used 
 To streamline development and improve performance, we explored various frameworks which were  ( **ESPnet, DeepSpeech, SpeechBrain, Kaldi and Nemo** ) instead of building a neural network from scratch, which can be time-consuming. After careful consideration, we selected **NVIDIA NeMo**.
 
 **NVIDIA NeMo Framework** is a scalable and cloud-native generative AI framework built for researchers and PyTorch developers working on Large Language Models (LLMs), Multimodal Models (MMs), Automatic Speech Recognition (ASR), Text to Speech (TTS), and Computer Vision (CV) domains. It is designed to help you efficiently create, customize, and deploy new generative AI models.
@@ -267,7 +267,7 @@ Choosing MFCC aligns with our goal of creating a robust speech recognition syste
 
 #### Model Architecture :-
 - We will use a Citrinet model to demonstrate the effectiveness of subword tokenization for both training and inference. Citrinet, similar to QuartzNet in architecture, employs subword tokenization along with 8x subsampling and Squeeze-and-Excitation mechanisms. This combination achieves high transcription accuracy while maintaining efficient inference through non-autoregressive decoding.
-###  Citrinet Model Overview:-
+#####  Citrinet Model Overview:-
 
 ![Example Image](https://docs.nvidia.com/deeplearning/nemo/archives/nemo-100rc1/user-guide/docs/_images/citrinet_vertical.png)
 
@@ -297,7 +297,7 @@ The Citrinet model, which we utilize for Egyptian dialect speech recognition, is
 
 By leveraging subword tokenization, 8x subsampling, and Squeeze-and-Excitation, Citrinet achieves strong accuracy in transcriptions while ensuring efficient and scalable inference, making it a robust choice for Egyptian dialect ASR tasks.
 
-#### Model parameters tuning 
+##### Model parameters tuning 
 - After Several Tries , We tried a lot of different combinations of parameters until we reached the best results
 ````yaml
 name: &name "ContextNet5x1"
@@ -494,7 +494,7 @@ params.model.tokenizer.dir = data_dir + "tokenizer_spe_unigram_v32/"  # note thi
 params.model.tokenizer.type = "bpe"
 ````
 
-##### Why We Chose BPE ?
+#### Why We Chose BPE ?
 
 ##### Advantages of Byte Pair Encoding (BPE) for Egyptian Dialect Speech Recognition:
 
