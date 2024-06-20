@@ -14,7 +14,7 @@
       - [Advantages of SentencePiece (SPE)](#advantages-of-sentencepiece-spe)
     - [Why We Chose MFCC for Feature Extraction](#why-we-chose-mfcc-for-feature-extraction)
     - [Model Architecture](#Model-Architecture)
-    - [Citrinet Model OvervieW](#Citrinet-Model-Overview:-)
+    - [Citrinet Model Overview](#Citrinet-Model-Overview:-)
       - [Model parameters tuning](#model-parameters-tuning)
     - [Why We Chose BPE?](#Why-We-Chose-BPE-?)
       - [Advantages of Byte Pair Encoding (BPE) for Egyptian Dialect Speech Recognition](#advantages-of-byte-pair-encoding-bpe-for-egyptian-dialect-speech-recognition)
