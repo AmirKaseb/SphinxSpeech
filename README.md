@@ -150,7 +150,8 @@ except  Exception  as e:
 print(f"Error writing to {output_json}: {e}")
 print("Processing complete.")
 ````
-- In the end we divided the train folder into two manifests final_train.json and final_test.json with ratio 90% to 10 % .
+- In the end we divided the train folder into two manifests **final_train.json** and **final_test.json**  with ratio 90% to 10 % , you can find the dataset manifests in folder **manifests**
+  
 ###  2- Model Training :-
 The First step include  making a subword tokenizer which  is essential for Automatic Speech Recognition (ASR) ,  Extensive research in Neural Machine Translation and Language Modeling has demonstrated that subword tokenization not only reduces the length of tokenized representations, making sentences shorter and more manageable for models to learn, but also enhances the accuracy of token predictions.
 
@@ -267,6 +268,8 @@ Choosing MFCC aligns with our goal of creating a robust speech recognition syste
 ### Model Architecture :-
 - We will use a Citrinet model to demonstrate the effectiveness of subword tokenization for both training and inference. Citrinet, similar to QuartzNet in architecture, employs subword tokenization along with 8x subsampling and Squeeze-and-Excitation mechanisms. This combination achieves high transcription accuracy while maintaining efficient inference through non-autoregressive decoding.
 ###  Citrinet Model Overview:-
+
+![Example Image](https://docs.nvidia.com/deeplearning/nemo/archives/nemo-100rc1/user-guide/docs/_images/citrinet_vertical.png)
 
 The Citrinet model, which we utilize for Egyptian dialect speech recognition, is designed to achieve high transcription accuracy while maintaining efficient inference. It features several key components:
 
@@ -510,12 +513,13 @@ params.model.tokenizer.type = "bpe"
 
 By choosing BPE, we leverage its ability to create a compact and efficient vocabulary, enhancing the accuracy and performance of our speech recognition model for the Egyptian dialect.
 
-- Finally but not the end , We have trained the model for **100 epochs** .
+- Finally but not the end , We have trained the model for **100 epochs**
 ````python
 first_asr_model = nemo_asr.models.EncDecCTCModelBPE(cfg=params.model, trainer=trainer)
 # Start training!!!
 trainer.fit(first_asr_model)
 ````
+- Then We saved the model as **.nemo** extension , you can find the checkpoints and the best model in folder **model** named **amir.nemo**
 
 ## 3-Model Interference & Deployment
 - For Interface Purpose we had a script for loading a model and inference with a saved wav file from disk 
