@@ -1,0 +1,11 @@
+wget
+text-unidecode
+matplotlib>=3.3.2
+pandas
+librosa
+soundfile
+nemo_toolkit[all] @ git+https://github.com/NVIDIA/NeMo.git@r2.0.0rc0
+pyaudio
+ipython
+pydub
+omegaconf
