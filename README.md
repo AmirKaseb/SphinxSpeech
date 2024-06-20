@@ -1,6 +1,96 @@
 
 # SphinxSpeech : Speech Recognition Model for Egyptian Dialect
 
+
+# Table of Contents
+
+1. [**SphinxSpeech: Speech Recognition Model for Egyptian Dialect**](#sphinxspeech-speech-recognition-model-for-egyptian-dialect)
+2. [**Overview**](#overview)
+3. [**Framework Used**](#framework-used)
+4. [**Why Nemo?**](#why-nemo)
+5. [**Training**](#training)
+    1. [Dataset Preprocessing](#dataset-preprocessing)
+    2. [Model Training](#model-training)
+        - [Why Subword Tokenizer?](#why-subword-tokenizer)
+        - [Building a Custom Subword Tokenizer](#building-a-custom-subword-tokenizer)
+        - [Why We Chose Unigram and SPE Tokenization?](#why-we-chose-unigram-and-spe-tokenization)
+            - [Advantages of Unigram Tokenization](#advantages-of-unigram-tokenization)
+            - [Advantages of SentencePiece (SPE)](#advantages-of-sentencepiece-spe)
+        - [Why We Chose MFCC for Feature Extraction](#why-we-chose-mfcc-for-feature-extraction)
+        - [Model Architecture](#model-architecture)
+            - [Citrinet Model Overview](#citrinet-model-overview)
+            - [Model Parameters Tuning](#model-parameters-tuning)
+        - [Why We Chose BPE?](#why-we-chose-bpe)
+            - [Advantages of Byte Pair Encoding (BPE) for Egyptian Dialect Speech Recognition](#advantages-of-byte-pair-encoding-bpe-for-egyptian-dialect-speech-recognition)
+    3. [**Model Interference & Deployment**](#model-interference--deployment)
+6. [**Conclusion**](#conclusion)
+7. [**References**](#references)
+
+# SphinxSpeech: Speech Recognition Model for Egyptian Dialect
+Content for this section...
+
+# Overview
+Content for this section...
+
+# Framework Used
+Content for this section...
+
+# Why Nemo?
+Content for this section...
+
+# Training
+Content for this section...
+
+## Dataset Preprocessing
+Content for this section...
+
+## Model Training
+Content for this section...
+
+### Why Subword Tokenizer?
+Content for this section...
+
+### Building a Custom Subword Tokenizer
+Content for this section...
+
+### Why We Chose Unigram and SPE Tokenization?
+Content for this section...
+
+#### Advantages of Unigram Tokenization
+Content for this section...
+
+#### Advantages of SentencePiece (SPE)
+Content for this section...
+
+### Why We Chose MFCC for Feature Extraction
+Content for this section...
+
+## Model Architecture
+Content for this section...
+
+### Citrinet Model Overview
+Content for this section...
+
+### Model Parameters Tuning
+Content for this section...
+
+### Why We Chose BPE?
+Content for this section...
+
+#### Advantages of Byte Pair Encoding (BPE) for Egyptian Dialect Speech Recognition
+Content for this section...
+
+# Model Interference & Deployment
+Content for this section...
+
+# Conclusion
+Content for this section...
+
+# References
+Content for this section...
+
+
+
 ## Overview
 
 Recognizing speech in Egyptian Arabic presents unique challenges due to its specific sounds, words, and grammar compared to standard Arabic. Our project, SphinxSpeech, aims to build a speech recognition model specifically for Egyptian Arabic, developed for the **MTC AIC-2 Competition**.
