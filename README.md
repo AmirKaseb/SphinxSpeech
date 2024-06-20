@@ -5,7 +5,7 @@
 
 Recognizing speech in Egyptian Arabic presents unique challenges due to its specific sounds, words, and grammar compared to standard Arabic. Our project, SphinxSpeech, aims to build a speech recognition model specifically for Egyptian Arabic, developed for the **MTC AIC-2 Competition**.
 
-![Example Image](https://imgur.com/a/sKtqVA1)
+![Example Image](https://i.imgur.com/vMtlVrO.png)
 
 
 ## Framework Used 
