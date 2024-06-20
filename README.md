@@ -4,10 +4,10 @@
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Framework Used](#framework-used)
+    - [Framework Used](#framework-used)
     - [NVIDIA NeMo Framework](#nvidia-nemo-framework)
     - [Why Nemo?](#why-nemo)
-3. [Training](#training)
+2. [Training](#training)
     - [1- Dataset Preprocessing](#1--dataset-preprocessing)
     - [2- Model Training](#2--model-training)
         - [Why Subword Tokenizer?](#why-subword-tokenizer)
@@ -20,8 +20,8 @@
             - [Why We Chose BPE](#why-we-chose-bpe)
         - [Training the Model](#training-the-model)
     - [3- Model Interference & Deployment](#3--model-interference--deployment)
-4. [References](#references)
-5. [Conclusion](#conclusion)
+3. [References](#references)
+4. [Conclusion](#conclusion)
 
 
 
