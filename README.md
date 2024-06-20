@@ -16,7 +16,7 @@ To streamline development and improve performance, we explored various framework
 ![Example Image](https://docscontent.nvidia.com/dims4/default/9a9e8bc/2147483647/strip/true/crop/1540x867+10+0/resize/1000x563!/quality/90/?url=https%3A%2F%2Fk3-prod-nvidia-docs.s3.us-west-2.amazonaws.com%2Fbrightspot%2F87%2F69%2F41a21a6b4d95aee54d030b998733%2Fnemo-overview.png)
 
 
-## Why Nemo ?
+### Why Nemo ?
 We chose Nemo for several compelling reasons:
 
 
@@ -155,7 +155,7 @@ print("Processing complete.")
 ###  2- Model Training :-
 The First step include  making a subword tokenizer which  is essential for Automatic Speech Recognition (ASR) ,  Extensive research in Neural Machine Translation and Language Modeling has demonstrated that subword tokenization not only reduces the length of tokenized representations, making sentences shorter and more manageable for models to learn, but also enhances the accuracy of token predictions.
 
-### Why  Subword Tokenizer ?
+#### Why  Subword Tokenizer ?
 
 We previously emphasized that subword tokenization is essential for Automatic Speech Recognition (ASR), not just a desirable feature. In another tutorials , we used the Connectionist Temporal Classification (CTC) loss function to train the model, but this loss function has some limitations:
 
@@ -164,7 +164,7 @@ We previously emphasized that subword tokenization is essential for Automatic Sp
 
 By implementing subword tokenization, we address these limitations, thereby improving the model's performance and prediction accuracy.
 
-###  Building a custom subword tokenizer
+####  Building a custom subword tokenizer
 - First Downloading Nemo Framework and all libraries required for the training 
 ````python
 """
@@ -228,15 +228,15 @@ The script requires several important arguments:
     
 -   **--log**: Enable logging messages.
 
-## Why We Chose Unigram and SPE Tokenization ?
-### Advantages of Unigram Tokenization:
+#### Why We Chose Unigram and SPE Tokenization ?
+##### Advantages of Unigram Tokenization:
 
 1.  **Efficiency**: Captures common subword units efficiently, crucial for the nuances of the Egyptian dialect.
 2.  **Flexibility**: Balances character and word-level representations for better handling of frequent and rare words.
 3.  **Improved Accuracy**: Captures morphological features accurately, enhancing overall recognition performance.
 
 
-### Advantages of SentencePiece (SPE):
+##### Advantages of SentencePiece (SPE):
 
 1.  **Language-Agnostic**: Adapts well to the unique characteristics of Egyptian Arabic.
 2.  **End-to-End Tokenization**: Integrates seamlessly with neural network models, enhancing the ASR pipeline.
@@ -248,7 +248,7 @@ Choosing Unigram and SPE leverages their strengths to enhance the accuracy, effi
 - At the end we had our tokinzer in **tokenizer_spe_unigram_v64** Folder with voab file and tokenizer Model.
 
 
-### Why We Chose MFCC for Feature Extraction
+#### Why We Chose MFCC for Feature Extraction
 
 We go for Mel-Frequency Cepstral Coefficients (MFCC) to maker our Egyptian dialect speech recognition for a few key reasons:
 
@@ -265,7 +265,7 @@ Choosing MFCC aligns with our goal of creating a robust speech recognition syste
 ![Example Image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FTsu71%2FbtqETBgoxsP%2F7rgu73Uyc3isPddR9q1ZOK%2Fimg.png)
 
 
-### Model Architecture :-
+#### Model Architecture :-
 - We will use a Citrinet model to demonstrate the effectiveness of subword tokenization for both training and inference. Citrinet, similar to QuartzNet in architecture, employs subword tokenization along with 8x subsampling and Squeeze-and-Excitation mechanisms. This combination achieves high transcription accuracy while maintaining efficient inference through non-autoregressive decoding.
 ###  Citrinet Model Overview:-
 
@@ -297,7 +297,7 @@ The Citrinet model, which we utilize for Egyptian dialect speech recognition, is
 
 By leveraging subword tokenization, 8x subsampling, and Squeeze-and-Excitation, Citrinet achieves strong accuracy in transcriptions while ensuring efficient and scalable inference, making it a robust choice for Egyptian dialect ASR tasks.
 
-## Model parameters tuning 
+#### Model parameters tuning 
 - After Several Tries , We tried a lot of different combinations of parameters until we reached the best results
 ````yaml
 name: &name "ContextNet5x1"
@@ -494,9 +494,9 @@ params.model.tokenizer.dir = data_dir + "tokenizer_spe_unigram_v32/"  # note thi
 params.model.tokenizer.type = "bpe"
 ````
 
-## Why We Chose BPE ?
+##### Why We Chose BPE ?
 
-### Advantages of Byte Pair Encoding (BPE) for Egyptian Dialect Speech Recognition:
+##### Advantages of Byte Pair Encoding (BPE) for Egyptian Dialect Speech Recognition:
 
 1.  **Balance Between Character and Word-Level Tokenization**: BPE strikes a balance between character-level and word-level tokenization. It splits words into subword units, which helps in efficiently handling both common and rare words in the Egyptian dialect.
     
@@ -521,7 +521,7 @@ trainer.fit(first_asr_model)
 ````
 - Then We saved the model as **.nemo** extension , you can find the checkpoints and the best model in folder **model** named **amir.nemo**
 
-## 3-Model Interference & Deployment
+### 3-Model Interference & Deployment
 - For Interface Purpose we had a script for loading a model and inference with a saved wav file from disk 
 ````python
 # NeMo's "core" package
@@ -629,8 +629,8 @@ With these potential improvements, we anticipate achieving even higher accuracy 
 
 ## References
 
-- [ASR_with_Subword_Tokenization]([https://colab.research.google.com/github/NVIDIA/NeMo/blob/stable/tutorials/asr/ASR_with_Subword_Tokenization.ipynb#scrollTo=fs2aK7xB6pAd)
-- [QuartzNet paper]((https://arxiv.org/abs/1910.10261))
+- [ASR_with_Subword_Tokenization](https://colab.research.google.com/github/NVIDIA/NeMo/blob/stable/tutorials/asr/ASR_with_Subword_Tokenization.ipynb#scrollTo=fs2aK7xB6pAd)
+- [QuartzNet paper](https://arxiv.org/abs/1910.10261)
 - [Byte Pair Encoding](https://arxiv.org/abs/1508.07909)
-- [Sentence Piece]((https://www.aclweb.org/anthology/D18-2012/))
+- [Sentence Piece](https://www.aclweb.org/anthology/D18-2012/)
 - [Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)
