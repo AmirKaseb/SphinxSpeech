@@ -629,8 +629,8 @@ With these potential improvements, we anticipate achieving even higher accuracy 
 
 ## References
 
-- [ASR_with_Subword_Tokenization]([Link]https://colab.research.google.com/github/NVIDIA/NeMo/blob/stable/tutorials/asr/ASR_with_Subword_Tokenization.ipynb#scrollTo=fs2aK7xB6pAd)
-- [QuartzNet paper]([link](https://arxiv.org/abs/1910.10261))
-- [Byte Pair Encoding]([link]https://arxiv.org/abs/1508.07909)
-- [Sentence Piece]([link](https://www.aclweb.org/anthology/D18-2012/))
-- [Squeeze-and-Excitation Networks]([link](https://arxiv.org/abs/1709.01507)
+- [ASR_with_Subword_Tokenization]([https://colab.research.google.com/github/NVIDIA/NeMo/blob/stable/tutorials/asr/ASR_with_Subword_Tokenization.ipynb#scrollTo=fs2aK7xB6pAd)
+- [QuartzNet paper]((https://arxiv.org/abs/1910.10261))
+- [Byte Pair Encoding](https://arxiv.org/abs/1508.07909)
+- [Sentence Piece]((https://www.aclweb.org/anthology/D18-2012/))
+- [Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)
