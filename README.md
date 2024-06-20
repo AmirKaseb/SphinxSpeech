@@ -3,27 +3,23 @@
 
 ## Table of Contents
 
-1. [Overview](#overview)
-    - [Framework Used](#framework-used)
-    - [NVIDIA NeMo Framework](#nvidia-nemo-framework)
-    - [Why Nemo?](#why-nemo)
-2. [Training](#training)
-    - [1- Dataset Preprocessing](#1--dataset-preprocessing)
-    - [2- Model Training](#2--model-training)
-        - [Why Subword Tokenizer?](#why-subword-tokenizer)
-        - [Building a Custom Subword Tokenizer](#building-a-custom-subword-tokenizer)
-        - [Why We Chose Unigram and SPE Tokenization](#why-we-chose-unigram-and-spe-tokenization)
-        - [Why We Chose MFCC for Feature Extraction](#why-we-chose-mfcc-for-feature-extraction)
-        - [Model Architecture](#model-architecture)
-            - [Citrinet Model Overview](#citrinet-model-overview)
-            - [Model Parameters Tuning](#model-parameters-tuning)
-            - [Why We Chose BPE](#why-we-chose-bpe)
-        - [Training the Model](#training-the-model)
-    - [3- Model Interference & Deployment](#3--model-interference--deployment)
-3. [References](#references)
-4. [Conclusion](#conclusion)
-
-
+- [Overview](#overview)
+  - [Framework Used](#framework-used)
+  - [Why Nemo?](#why-nemo)
+- [Training](#training)
+  - [1. Dataset Preprocessing](#1-dataset-preprocessing)
+  - [2. Model Training](#2-model-training)
+    - [Why Subword Tokenizer?](#why-subword-tokenizer)
+    - [Building a custom subword tokenizer](#building-a-custom-subword-tokenizer)
+      - [Advantages of SentencePiece (SPE)](#advantages-of-sentencepiece-spe)
+    - [Why We Chose MFCC for Feature Extraction](#why-we-chose-mfcc-for-feature-extraction)
+    - [Model Architecture](#model-architecture)
+      - [Model parameters tuning](#model-parameters-tuning)
+    - [Why We Chose BPE?](#why-we-chose-bpe)
+      - [Advantages of Byte Pair Encoding (BPE) for Egyptian Dialect Speech Recognition](#advantages-of-byte-pair-encoding-bpe-for-egyptian-dialect-speech-recognition)
+  - [3. Model Interference & Deployment](#3-model-interference--deployment)
+- [Conclusion](#conclusion)
+- [References](#references)
 
 ## Overview
 
