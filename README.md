@@ -5,6 +5,9 @@
 
 Recognizing speech in Egyptian Arabic presents unique challenges due to its specific sounds, words, and grammar compared to standard Arabic. Our project, SphinxSpeech, aims to build a speech recognition model specifically for Egyptian Arabic, developed for the **MTC AIC-2 Competition**.
 
+![Example Image](https://imgur.com/a/sKtqVA1)
+
+
 ## Framework Used 
 To streamline development and improve performance, we explored various frameworks which were  ( **ESPnet, DeepSpeech, SpeechBrain, Kaldi and Nemo** ) instead of building a neural network from scratch, which can be time-consuming. After careful consideration, we selected **NVIDIA NeMo**.
 
