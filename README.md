@@ -11,7 +11,7 @@ Recognizing speech in Egyptian Arabic presents unique challenges due to its spec
 ## Framework Used 
 To streamline development and improve performance, we explored various frameworks which were  ( **ESPnet, DeepSpeech, SpeechBrain, Kaldi and Nemo** ) instead of building a neural network from scratch, which can be time-consuming. After careful consideration, we selected **NVIDIA NeMo**.
 
-**NVIDIA NeMo Framework** is a scalable and cloud-native generative AI framework built for researchers and PyTorch developers working on Large Language Models (LLMs), Multimodal Models (MMs), Automatic Speech Recognition (ASR), Text to Speech (TTS), and Computer Vision (CV) domains. It is designed to help you efficiently create, customize, and deploy new generative AI models by leveraging existing code and pre-trained model checkpoints.
+**NVIDIA NeMo Framework** is a scalable and cloud-native generative AI framework built for researchers and PyTorch developers working on Large Language Models (LLMs), Multimodal Models (MMs), Automatic Speech Recognition (ASR), Text to Speech (TTS), and Computer Vision (CV) domains. It is designed to help you efficiently create, customize, and deploy new generative AI models.
 
 ![Example Image](https://docscontent.nvidia.com/dims4/default/9a9e8bc/2147483647/strip/true/crop/1540x867+10+0/resize/1000x563!/quality/90/?url=https%3A%2F%2Fk3-prod-nvidia-docs.s3.us-west-2.amazonaws.com%2Fbrightspot%2F87%2F69%2F41a21a6b4d95aee54d030b998733%2Fnemo-overview.png)
 
@@ -150,6 +150,7 @@ except  Exception  as e:
 print(f"Error writing to {output_json}: {e}")
 print("Processing complete.")
 ````
+- In the end we divided the train folder into two manifests final_train.json and final_test.json with ratio 90% to 10 % .
 ###  2- Model Training :-
 The First step include  making a subword tokenizer which  is essential for Automatic Speech Recognition (ASR) ,  Extensive research in Neural Machine Translation and Language Modeling has demonstrated that subword tokenization not only reduces the length of tokenized representations, making sentences shorter and more manageable for models to learn, but also enhances the accuracy of token predictions.
 
@@ -244,6 +245,24 @@ The script requires several important arguments:
 Choosing Unigram and SPE leverages their strengths to enhance the accuracy, efficiency, and scalability of SphinxSpeech for Egyptian dialect speech recognition.
 
 - At the end we had our tokinzer in **tokenizer_spe_unigram_v64** Folder with voab file and tokenizer Model.
+
+
+### Why We Chose MFCC for Feature Extraction
+
+We go for Mel-Frequency Cepstral Coefficients (MFCC) to maker our Egyptian dialect speech recognition for a few key reasons:
+
+1- **Effective Speech Representation**: MFCC effectively captures essential speech details critical for accurate recognition of Egyptian Arabic.
+
+2- **Noise Robustness**: It handles variations in pronunciation and background noise, ensuring reliable performance in diverse environments.
+
+3- **Efficiency**: MFCC strikes a balance between computational efficiency and quality, making it suitable for real-time speech processing.
+
+4- **Proven Method** : Widely used in speech processing, MFCC is supported by established tools and research, streamlining our development process.
+
+Choosing MFCC aligns with our goal of creating a robust speech recognition system tailored specifically for Egyptian Arabic, ensuring accurate and efficient performance in real-world applications.
+
+![Example Image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FTsu71%2FbtqETBgoxsP%2F7rgu73Uyc3isPddR9q1ZOK%2Fimg.png)
+
 
 ### Model Architecture :-
 - We will use a Citrinet model to demonstrate the effectiveness of subword tokenization for both training and inference. Citrinet, similar to QuartzNet in architecture, employs subword tokenization along with 8x subsampling and Squeeze-and-Excitation mechanisms. This combination achieves high transcription accuracy while maintaining efficient inference through non-autoregressive decoding.
@@ -603,3 +622,11 @@ Our experiments yielded a Word Error Rate (WER) of 64%. While this is a promisin
 -   **Adding Adapter Layers**: Incorporating adapter layers to better handle variations and nuances in the Egyptian dialect.
 
 With these potential improvements, we anticipate achieving even higher accuracy and better overall performance in our Egyptian dialect speech recognition model.
+
+## References
+
+- [ASR_with_Subword_Tokenization]([Link]https://colab.research.google.com/github/NVIDIA/NeMo/blob/stable/tutorials/asr/ASR_with_Subword_Tokenization.ipynb#scrollTo=fs2aK7xB6pAd)
+- [QuartzNet paper]([link](https://arxiv.org/abs/1910.10261))
+- [Byte Pair Encoding]([link]https://arxiv.org/abs/1508.07909)
+- [Sentence Piece]([link](https://www.aclweb.org/anthology/D18-2012/))
+- [Squeeze-and-Excitation Networks]([link](https://arxiv.org/abs/1709.01507)
