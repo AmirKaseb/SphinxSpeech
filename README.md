@@ -12,6 +12,10 @@ Recognizing speech in Egyptian Arabic presents unique challenges due to its spec
 To streamline development and improve performance, we explored various frameworks which were  ( **ESPnet, DeepSpeech, SpeechBrain, Kaldi and Nemo** ) instead of building a neural network from scratch, which can be time-consuming. After careful consideration, we selected **NVIDIA NeMo**.
 
 **NVIDIA NeMo Framework** is a scalable and cloud-native generative AI framework built for researchers and PyTorch developers working on Large Language Models (LLMs), Multimodal Models (MMs), Automatic Speech Recognition (ASR), Text to Speech (TTS), and Computer Vision (CV) domains. It is designed to help you efficiently create, customize, and deploy new generative AI models by leveraging existing code and pre-trained model checkpoints.
+
+![Example Image](https://docscontent.nvidia.com/dims4/default/9a9e8bc/2147483647/strip/true/crop/1540x867+10+0/resize/1000x563!/quality/90/?url=https%3A%2F%2Fk3-prod-nvidia-docs.s3.us-west-2.amazonaws.com%2Fbrightspot%2F87%2F69%2F41a21a6b4d95aee54d030b998733%2Fnemo-overview.png)
+
+
 ## Why Nemo ?
 We chose Nemo for several compelling reasons:
 
