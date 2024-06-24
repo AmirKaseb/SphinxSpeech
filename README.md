@@ -586,52 +586,31 @@ output_wav_path3
 ````python
 import os
 import pandas as pd
-import librosa
-import soundfile as sf
-import nemo.collections.asr as nemo_asr
+from nemo.collections.asr.models import EncDecCTCModelBPE
 
-# Loading the NeMo ASR model
-first_asr_model = nemo_asr.models.EncDecCTCModelBPE.restore_from(restore_path="amir.nemo")
+# Initialize the ASR model
+asr_model = EncDecCTCModelBPE.restore_from(restore_path="amir.nemo")
 
-# Function to convert WAV to 16kHz
-def convert_wav_to_16k(input_wav_path, output_file_path, sr=16000):
-    y, s = librosa.load(input_wav_path, sr=sr)
-    sf.write(output_file_path, y, s)
-    print(f'"{input_wav_path}" has been converted to {s}Hz')
-    return output_file_path
+# Directory containing WAV files
+audio_dir = "/content/test"
 
-# Function to transcribe WAV file
-def transcribe_wav(wav_file):
-    transcript = first_asr_model.transcribe(paths2audio_files=[wav_file])
-    return transcript[0]
+# List all WAV files in the directory
+audio_files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith('.wav')]
 
-# Folder containing WAV files
-folder_path = '/path/to/your/folder'
+# Prepare a list to store transcriptions
+transcriptions = []
 
-# List all WAV files in the folder
-wav_files = [f for f in os.listdir(folder_path) if f.endswith('.wav')]
+# Transcribe each audio file
+for audio_file in audio_files:
+    audio_id = os.path.basename(audio_file).split('.')[0]
+    transcription = asr_model.transcribe([audio_file], batch_size=1)[0]
+    transcriptions.append({"audio_id": audio_id, "text": transcription})
 
-# DataFrame to store results
-results_df = pd.DataFrame(columns=['audio_id', 'text'])
+# Save the transcriptions to a CSV file
+output_df = pd.DataFrame(transcriptions)
+output_df.to_csv("transcriptions.csv", index=False, encoding='utf-8')
 
-# Process each WAV file
-for wav_file in wav_files:
-    # Convert to 16kHz if necessary
-    input_wav_path = os.path.join(folder_path, wav_file)
-    output_wav_path = os.path.join(folder_path, 'converted_' + wav_file)
-    converted_wav_path = convert_wav_to_16k(input_wav_path, output_wav_path)
-
-    # Transcribe the converted WAV file
-    text = transcribe_wav(converted_wav_path)
-
-    # Append to DataFrame
-    results_df = results_df.append({'audio_id': wav_file, 'text': text}, ignore_index=True)
-
-# Save results to CSV
-results_csv_path = '/path/to/your/results.csv'
-results_df.to_csv(results_csv_path, index=False)
-
-print(f'Results saved to {results_csv_path}')
+print("Transcriptions saved to transcriptions.csv")
 
 ````
 
