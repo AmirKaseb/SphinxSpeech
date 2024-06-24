@@ -1,5 +1,5 @@
 
-# SphinxSpeech : Speech Recognition Model for Egyptian Dialect
+# SphinxSpeech : Speech Recognition Model for Egyptian Dialect by Metanoia Labs Team
 
 ## Table of Contents
 
