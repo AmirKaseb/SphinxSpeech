@@ -614,6 +614,9 @@ print("Transcriptions saved to transcriptions.csv")
 
 ````
 
+- We Also added in /Inference scripts , Notebook to handle dependencies installation and to make reproducing results easier . 
+
+
 ## Conclusion 
 In this project, we developed an advanced speech recognition model tailored for the Egyptian dialect using the Citrinet architecture and Byte Pair Encoding (BPE) for tokenization. By leveraging the strengths of BPE, we achieved a balanced and efficient vocabulary representation, which significantly contributed to the model's performance.
 
