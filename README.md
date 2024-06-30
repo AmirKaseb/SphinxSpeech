@@ -544,7 +544,7 @@ trainer.fit(first_asr_model)
 
 - We had continued training the model for another 50 epochs resulting in better wer with 68 % on validation dataset and 62 % on train dataset , We still think that training for more epochs can make the model better up to certain limit to avoid overfit , the last model up till now is named **last.nemo** .
 
-![Example Image](https://imgur.com/a/HAQp7YD)
+![Example Image](https://i.imgur.com/hv1WiK8.png)
 
 ### 3-Model Interference & Deployment
 - For Interface Purpose we had a script for loading a model and inference with a saved wav file from disk 
