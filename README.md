@@ -540,11 +540,6 @@ trainer.fit(first_asr_model)
 ````
 - Then We saved the model as **.nemo** extension , you can find the checkpoints and the best model in folder **model** named **amir.nemo**
 
-#### Model Improvement
-
-- We had continued training the model for another 50 epochs resulting in better wer with 68 % on validation dataset and 62 % on train dataset , We still think that training for more epochs can make the model better up to certain limit to avoid overfit , the last model up till now is named **last.nemo** .
-
-![Example Image](https://i.imgur.com/hv1WiK8.png)
 
 ### 3-Model Interference & Deployment
 - For Interface Purpose we had a script for loading a model and inference with a saved wav file from disk 
@@ -567,7 +562,7 @@ from omegaconf import OmegaConf, open_dict
 from  IPython.display  import  Audio, display
 
 #Loading The Model 
-first_asr_model  =  nemo_asr.models.EncDecCTCModelBPE.restore_from(restore_path="last.nemo") # loading the model from a path
+first_asr_model  =  nemo_asr.models.EncDecCTCModelBPE.restore_from(restore_path="amir.nemo") # loading the model from a path
 
 # Inference on a saved wav file from disk
 # Converting the original wav to the same sample rate as our model trained on and making it mono (1 channel)
@@ -595,7 +590,7 @@ import pandas as pd
 from nemo.collections.asr.models import EncDecCTCModelBPE
 
 # Initialize the ASR model
-asr_model = EncDecCTCModelBPE.restore_from(restore_path="last.nemo")
+asr_model = EncDecCTCModelBPE.restore_from(restore_path="amir.nemo")
 
 # Directory containing WAV files
 audio_dir = "/content/test"
