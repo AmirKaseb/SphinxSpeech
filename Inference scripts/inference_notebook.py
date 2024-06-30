@@ -48,7 +48,7 @@ import pandas as pd
 from nemo.collections.asr.models import EncDecCTCModelBPE
 
 # Initialize the ASR model
-asr_model = EncDecCTCModelBPE.restore_from(restore_path="amir.nemo")
+asr_model = EncDecCTCModelBPE.restore_from(restore_path="last.nemo")
 
 # Directory containing WAV files
 audio_dir = "./test"
