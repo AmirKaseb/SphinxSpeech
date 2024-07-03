@@ -540,6 +540,18 @@ trainer.fit(first_asr_model)
 ````
 - Then We saved the model as **.nemo** extension , you can find the checkpoints and the best model in folder **model** named **amir.nemo**
 
+#### Modedl Imporvement 
+
+- We Had Make another impovements like better parameters tuning and adding data augementation as a parameter , We Continued training our model for another 100 epoch , So We reached 200 epoch , You can find all versions of models in **/Models** but the best one is **FinalAmir.Nemo** which was used to submit our final submission with   Mean Levenshtein Distance **13.680764** We still think we can improve this results by adding more data for better generalization on Egyptian Dialect .
+
+- To Load the model and continue training We Used built-in nemo function  
+
+````python
+restored_model = nemo_asr.models.EncDecCTCModelBPE.restore_from("./first_model.nemo")
+````
+
+- We was sure about training all the models layers each time as in the competition **Fine Tuning Wasn't Allowed !!** , you can find  in **/checkpoints/bestcheckpoints the ** .ckpt file  of the last 50 epoch on our models had done **(150-200 epoch)epoch=50-step=2652.ckpt**  
+
 
 ### 3-Model Interference & Deployment
 - For Interface Purpose we had a script for loading a model and inference with a saved wav file from disk 
@@ -562,7 +574,7 @@ from omegaconf import OmegaConf, open_dict
 from  IPython.display  import  Audio, display
 
 #Loading The Model 
-first_asr_model  =  nemo_asr.models.EncDecCTCModelBPE.restore_from(restore_path="amir.nemo") # loading the model from a path
+first_asr_model  =  nemo_asr.models.EncDecCTCModelBPE.restore_from(restore_path="FinalAmir.nemo") # loading the model from a path
 
 # Inference on a saved wav file from disk
 # Converting the original wav to the same sample rate as our model trained on and making it mono (1 channel)
@@ -590,7 +602,7 @@ import pandas as pd
 from nemo.collections.asr.models import EncDecCTCModelBPE
 
 # Initialize the ASR model
-asr_model = EncDecCTCModelBPE.restore_from(restore_path="amir.nemo")
+asr_model = EncDecCTCModelBPE.restore_from(restore_path="FinalAmir.nemo")
 
 # Directory containing WAV files
 audio_dir = "/content/test"
@@ -605,7 +617,7 @@ transcriptions = []
 for audio_file in audio_files:
     audio_id = os.path.basename(audio_file).split('.')[0]
     transcription = asr_model.transcribe([audio_file], batch_size=1)[0]
-    transcriptions.append({"audio_id": audio_id, "text": transcription})
+    transcriptions.append({"audio": audio_id, "transcript": transcription})
 
 # Save the transcriptions to a CSV file
 output_df = pd.DataFrame(transcriptions)
@@ -621,7 +633,7 @@ print("Transcriptions saved to transcriptions.csv")
 ## Conclusion 
 In this project, we developed an advanced speech recognition model tailored for the Egyptian dialect using the Citrinet architecture and Byte Pair Encoding (BPE) for tokenization. By leveraging the strengths of BPE, we achieved a balanced and efficient vocabulary representation, which significantly contributed to the model's performance.
 
-Our experiments yielded a Word Error Rate (WER) of 64%. While this is a promising start, we believe there is substantial room for improvement. Future enhancements could include:
+Our experiments state a good start for others to build on them. While this is a promising start, we believe there is substantial room for improvement. Future enhancements could include:
 
 -   **Better Parameter Tuning**: Fine-tuning hyperparameters to optimize the model's performance.
 -   **More Training Epochs**: Extending the training duration to allow the model to learn from the data more effectively.
