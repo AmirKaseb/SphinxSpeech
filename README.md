@@ -542,7 +542,7 @@ trainer.fit(first_asr_model)
 
 #### Model Imporvement 
 
-- We Had Make another impovements like better parameters tuning and adding data augementation as a parameter , We Continued training our model for another 100 epoch , So We reached 200 epoch , You can find all versions of models in **/Models** but the best one is **FinalAmir.Nemo** which was used to submit our final submission with   Mean Levenshtein Distance **13.680764** We still think we can improve this results by adding more data for better generalization on Egyptian Dialect .
+- We Had Make another impovements like better parameters tuning and adding data augementation as a parameter , We Continued training our model for another 100 epoch , So We reached 200 epoch , You can find all versions of models in **/Model** but the best one is **FinalAmir.Nemo** which was used to submit our final submission with   Mean Levenshtein Distance **13.680764** We still think we can improve this results by adding more data for better generalization on Egyptian Dialect .
 
 - To Load the model and continue training We Used built-in nemo function  
 
@@ -550,7 +550,7 @@ trainer.fit(first_asr_model)
 restored_model = nemo_asr.models.EncDecCTCModelBPE.restore_from("./first_model.nemo")
 ````
 
-- We was sure about training all the models layers each time as in the competition **Fine Tuning Wasn't Allowed !!** , you can find  in **/checkpoints/bestcheckpoints the** .ckpt file  of the last 50 epoch on our models had done **(150-200 epoch)epoch=50-step=2652.ckpt**  
+- We was sure about training all the models layers each time as in the competition **Fine Tuning Wasn't Allowed !!** , you can find  in **/checkpoints** .ckpt file  of the last 50 epoch on our models had done **(150-200 epoch)epoch=50-step=2652.ckpt**  
 
 
 ### 3-Model Interference & Deployment
