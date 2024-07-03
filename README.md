@@ -547,7 +547,7 @@ trainer.fit(first_asr_model)
 - To Load the model and continue training We Used built-in nemo function  
 
 ````python
-restored_model = nemo_asr.models.EncDecCTCModelBPE.restore_from("./first_model.nemo")
+restored_model = nemo_asr.models.EncDecCTCModelBPE.restore_from("./amir.nemo")
 ````
 
 - We was sure about training all the models layers each time as in the competition **Fine Tuning Wasn't Allowed !!** , you can find  in **/checkpoints** .ckpt file  of the last 50 epoch on our models had done **(150-200 epoch)epoch=50-step=2652.ckpt**  
