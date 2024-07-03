@@ -48,7 +48,7 @@ import pandas as pd
 from nemo.collections.asr.models import EncDecCTCModelBPE
 
 # Initialize the ASR model
-asr_model = EncDecCTCModelBPE.restore_from(restore_path="amir.nemo")
+asr_model = EncDecCTCModelBPE.restore_from(restore_path="FinalAmir.nemo")
 
 # Directory containing WAV files
 audio_dir = "./test"
@@ -63,7 +63,7 @@ transcriptions = []
 for audio_file in audio_files:
     audio_id = os.path.basename(audio_file).split('.')[0]
     transcription = asr_model.transcribe([audio_file], batch_size=1)[0]
-    transcriptions.append({"audio_id": audio_id, "text": transcription})
+    transcriptions.append({"audio": audio_id, "transcript": transcription})
 
 # Save the transcriptions to a CSV file
 output_df = pd.DataFrame(transcriptions)
