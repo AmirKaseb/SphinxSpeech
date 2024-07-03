@@ -16,6 +16,7 @@
       - [Citrinet Model Overview](#Citrinet-Model-Overview)
       - [Model parameters tuning](#model-parameters-tuning)
     - [Why We Chose BPE?](#Why-We-Chose-BPE-?)
+    - [Model Improvements]
   - [3. Model Interference & Deployment](#3-model-interference--deployment)
 - [Conclusion](#conclusion)
 - [References](#references)
@@ -538,11 +539,11 @@ first_asr_model = nemo_asr.models.EncDecCTCModelBPE(cfg=params.model, trainer=tr
 # Start training!!!
 trainer.fit(first_asr_model)
 ````
-- Then We saved the model as **.nemo** extension , you can find the checkpoints and the best model in folder **model** named **amir.nemo**
+- Then We saved the model as **.nemo** extension , you can find the checkpoints and the best model in folder **model** named **amir.nemo** ,the checkpoint for this model is saved in /chechpoints We achieved an Mean Levenshtein Distance of **21.074739** which wasn't a bad start
 
 #### Model Imporvement 
 
-- We Had Make another impovements like better parameters tuning and adding data augementation as a parameter , We Continued training our model for another 100 epoch , So We reached 200 epoch , You can find all versions of models in **/Model** but the best one is **FinalAmir.Nemo** which was used to submit our final submission with   Mean Levenshtein Distance **13.680764** We still think we can improve this results by adding more data for better generalization on Egyptian Dialect .
+- We Had Make another impovements like better parameters tuning and adding data augementation as a parameter also trying to train only parts of data not the full data and to use different tactics  , We Continued training our model for another 100 epoch , So We reached 200 epoch , You can find all versions of models in **/Model** but the best one is **FinalAmir.Nemo** which was used to submit our final submission with   Mean Levenshtein Distance **13.680764** We still think we can improve this results by adding more data for better generalization on Egyptian Dialect .
 
 - To Load the model and continue training We Used built-in nemo function  
 
