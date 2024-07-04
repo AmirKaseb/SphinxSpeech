@@ -660,6 +660,6 @@ With these potential improvements, we anticipate achieving even higher accuracy 
 - [Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)
 
 ## Contributors
-  <a href="https://github.com/OWNER/REPO/graphs/contributors">
+<a href="https://github.com/OWNER/REPO/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=OWNER/REPO" />
 </a>
