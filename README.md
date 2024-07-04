@@ -660,4 +660,12 @@ With these potential improvements, we anticipate achieving even higher accuracy 
 - [Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)
 
 ## Contributors
-[![Contributors](https://contrib.rocks/image?repo=OWNER/REPO)](https://github.com/OWNER/REPO/graphs/contributors)
+Metanoia Labs Team:
+- [Amir Kasseb](https://www.linkedin.com/in/amirkasseb/)
+- [Islam Ibrahim](https://www.linkedin.com/in/islamibr29/)
+- [Perihane Tarek](https://www.linkedin.com/in/perihane-tarek/)
+- [Mohamed Tarek](https://www.linkedin.com/in/mohamed-tarek-a67275249/)
+
+Supervision Acknowledge:
+- [Bassem Mokhtar](https://www.linkedin.com/in/bassem-mokhtar-8251a512/)
+- [Omar Adel](https://www.linkedin.com/in/omarxadel/)
