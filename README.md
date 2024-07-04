@@ -20,6 +20,7 @@
   - [3. Model Interference & Deployment](#3-model-interference--deployment)
 - [Conclusion](#conclusion)
 - [References](#references)
+- [Contributors](#contributors)
 
 ## Overview
 
@@ -657,3 +658,8 @@ With these potential improvements, we anticipate achieving even higher accuracy 
 - [Byte Pair Encoding](https://arxiv.org/abs/1508.07909)
 - [Sentence Piece](https://www.aclweb.org/anthology/D18-2012/)
 - [Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)
+
+## Contributors
+  <a href="https://github.com/OWNER/REPO/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=OWNER/REPO" />
+</a>
