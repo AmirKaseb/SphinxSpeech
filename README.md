@@ -16,7 +16,7 @@
       - [Citrinet Model Overview](#Citrinet-Model-Overview)
       - [Model parameters tuning](#model-parameters-tuning)
     - [Why We Chose BPE?](#Why-We-Chose-BPE-?)
-    - [Model Improvements]
+    - [Model Improvements](#Model-Imporvement)
   - [3. Model Interference & Deployment](#3-model-interference--deployment)
 - [Conclusion](#conclusion)
 - [References](#references)
