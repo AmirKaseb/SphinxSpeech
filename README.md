@@ -511,7 +511,7 @@ The PyAnnote diarization pipeline is an advanced system designed for segmenting 
 
 ## Inference Final Script
 
-- There is a notebook contain all the dependecies and required libraries for the inference you would find it in ``FinalInferenceNoteBook``
+- There is a notebook contain all the dependecies and required libraries for the inference you would find it in ``\FinalInferenceNoteBook`` directory.
 
 ```python
 import os
@@ -644,7 +644,7 @@ for audio_file in audio_files:
 
 print("All files processed.")
 
-
+````
 
 ## Contributors
 Metanoia Labs Team:
