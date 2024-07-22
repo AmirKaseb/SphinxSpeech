@@ -18,8 +18,6 @@
     - [Why We Chose BPE?](#Why-We-Chose-BPE-?)
     - [Model Improvements](#Model-Imporvement)
   - [3. Model Interference & Deployment](#3-model-interference--deployment)
-- [Conclusion](#conclusion)
-- [References](#references)
 - [Phase 2: Speaker Recognition & Diarization](#phase-2-speaker-recognition--diarization)
 - [Contributors](#contributors)
 
@@ -467,7 +465,6 @@ model:
      - [Clustering Method](#clustering-method)
      - [Embedding Model](#embedding-model)
      - [Segmentation Model](#segmentation-model)
-3. [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -501,11 +498,7 @@ The PyAnnote diarization pipeline is an advanced system designed for segmenting 
   
   **Rationale**: The `seg.bin` model is employed to detect speech boundaries effectively. Precise segmentation is fundamental for ensuring that each speaker’s contributions are accurately isolated, which facilitates accurate clustering and identification.
 
-## Conclusion
 
-The configuration of the PyAnnote diarization pipeline is designed to ensure optimal performance in speaker segmentation and identification. By leveraging sophisticated models and clustering techniques, this pipeline provides a robust solution for analyzing complex audio recordings and distinguishing multiple speakers with high precision.
-
-   
 
 
 
