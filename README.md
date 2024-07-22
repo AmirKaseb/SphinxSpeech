@@ -456,7 +456,7 @@ model:
         stride: [1]
         dilation: [1]
 ````
-# Phase-2:-Speaker-Recognition-Diarization
+# Phase 2: Speaker Recognition Diarization
 
 ## Contributors
 Metanoia Labs Team:
