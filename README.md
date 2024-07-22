@@ -453,7 +453,205 @@ model:
         kernel: [1]
         stride: [1]
         dilation: [1]
+        dropout: 0.0
+        residual: false
+        separable: *separable
+        se: true
+        se_context_size: -1
+
+  decoder:
+    _target_: nemo.collections.asr.modules.ConvASRDecoder
+    feat_in: 1024
+    num_classes: -1  # filled with vocabulary size from tokenizer at runtime
+    vocabulary: []  # filled with vocabulary from tokenizer at runtime
+
+  optim:
+    name: adam
+    # _target_: nemo.core.optim.optimizers.Adam
+    lr: .1
+
+    # optimizer arguments
+    betas: [0.9, 0.999]
+    weight_decay: 0.0001
+
+    # scheduler setup
+    sched:
+      name: CosineAnnealing
+
+      # scheduler config override
+      warmup_steps: null
+      warmup_ratio: 0.05
+      min_lr: 1e-6
+      last_epoch: -1
+
+trainer:
+  devices: 1 # number of gpus
+  max_epochs: 5
+  max_steps: -1 # computed at runtime if not set
+  num_nodes: 1
+  accelerator: gpu
+  strategy: ddp
+  accumulate_grad_batches: 1
+  enable_checkpointing: False  # Provided by exp_manager
+  logger: False  # Provided by exp_manager
+  log_every_n_steps: 1  # Interval of logging.
+  val_check_interval: 1.0 # Set to 0.25 to check 4 times per epoch, or an int for number of iterations
+  benchmark: false # needs to be false for models with variable-length speech input as it slows down training
+
+exp_manager:
+  exp_dir: null
+  name: *name
+  create_tensorboard_logger: True
+  create_checkpoint_callback: True
+  create_wandb_logger: False
+  wandb_logger_kwargs:
+    name: null
+    project: null
 ````
+- Then we Integrate the tokenizer we had made :-
+````python
+params.model.tokenizer.dir = data_dir + "tokenizer_spe_unigram_v32/"  # note this is a directory, not a path to a vocabulary file
+params.model.tokenizer.type = "bpe"
+````
+
+#### Why We Chose BPE ?
+
+##### Advantages of Byte Pair Encoding (BPE) for Egyptian Dialect Speech Recognition:
+
+1.  **Balance Between Character and Word-Level Tokenization**: BPE strikes a balance between character-level and word-level tokenization. It splits words into subword units, which helps in efficiently handling both common and rare words in the Egyptian dialect.
+    
+2.  **Reduced Vocabulary Size**: BPE significantly reduces the vocabulary size by breaking down words into subword units. This reduction helps in managing memory and computational resources more effectively.
+    
+3.  **Improved Handling of Rare Words**: By decomposing rare words into more frequent subwords, BPE ensures better recognition and understanding of words that may not appear often in the training data.
+    
+4.  **Consistent Representation**: BPE provides a consistent representation of morphological variations in Egyptian Arabic, which is particularly beneficial given the dialect's rich morphological structure.
+    
+5.  **Enhanced Model Performance**: The ability to represent both frequent and rare words efficiently helps improve the overall performance of the ASR model, leading to more accurate transcriptions.
+    
+6.  **Scalability**: BPE can handle large datasets effectively, which is essential for training  ASR models with extensive Egyptian Arabic corpora.
+    
+
+By choosing BPE, we leverage its ability to create a compact and efficient vocabulary, enhancing the accuracy and performance of our speech recognition model for the Egyptian dialect.
+
+- Finally but not the end , We have trained the model for **100 epochs**
+````python
+first_asr_model = nemo_asr.models.EncDecCTCModelBPE(cfg=params.model, trainer=trainer)
+# Start training!!!
+trainer.fit(first_asr_model)
+````
+- Then We saved the model as **.nemo** extension , you can find the checkpoints and the best model in folder **model** named **amir.nemo** ,the checkpoint for this model is saved in /chechpoints We achieved an Mean Levenshtein Distance of **21.074739** which wasn't a bad start
+
+#### Model Imporvement 
+
+- We Had Make another impovements like better parameters tuning and adding data augementation as a parameter also trying to train only parts of data not the full data and to use different tactics  , We Continued training our model for another 100 epoch , So We reached 200 epoch , You can find all versions of models in **/Model** but the best one is **FinalAmir.Nemo** which was used to submit our final submission with   Mean Levenshtein Distance **13.680764** We still think we can improve this results by adding more data for better generalization on Egyptian Dialect .
+
+- To Load the model and continue training We Used built-in nemo function  
+
+````python
+restored_model = nemo_asr.models.EncDecCTCModelBPE.restore_from("./amir.nemo")
+````
+
+- We was sure about training all the models layers each time as in the competition **Fine Tuning Wasn't Allowed !!** , you can find  in **/checkpoints** .ckpt file  of the last 50 epoch on our models had done.
+
+| Model Filename   | Epochs | Mean Levenshtein Distance |
+|------------------|--------|---------------------------|
+| First_model      | 33     | wasn't calculated         |
+| amir.nemo        | 100    | 21.074739                 |
+| amir2.nemo       | 150    | 14.396292                 |
+| FinalAmir.nemo   | 200    | 13.680764                 |
+
+
+
+### 3-Model Interference & Deployment
+- For Interface Purpose we had a script for loading a model and inference with a saved wav file from disk 
+````python
+# NeMo's "core" package
+import  nemo
+import  pyaudio
+import  wave
+import  librosa
+import  os
+import  wave
+import  soundfile  as  sf
+import  IPython.display  as  ipd
+import nemo.collections.asr as  nemo_asr
+from  IPython.display  import  Javascript
+from  base64  import  b64decode
+from  io  import  BytesIO
+from  pydub  import  AudioSegment
+from omegaconf import OmegaConf, open_dict
+from  IPython.display  import  Audio, display
+
+#Loading The Model 
+first_asr_model  =  nemo_asr.models.EncDecCTCModelBPE.restore_from(restore_path="FinalAmir.nemo") # loading the model from a path
+
+# Inference on a saved wav file from disk
+# Converting the original wav to the same sample rate as our model trained on and making it mono (1 channel)
+
+def  convert_wav_to_16k(input_wav_path, output_file_path, sr=16000):
+y, s  =  librosa.load(input_wav_path, sr=sr)
+sf.write(output_file_path, y, s)
+print(f'"{input_wav_path}" has been converted to {s}Hz')
+return  output_file_path
+output_wav_path1  =  convert_wav_to_16k('../untitled.wav', 'aaa.wav')
+ipd.Audio(output_wav_path1)
+output_wav_path2  =  convert_wav_to_16k('test2.wav', 'XXXX.wav')
+ipd.Audio(output_wav_path2)
+output_wav_path3  =  convert_wav_to_16k('test3.wav', 'XXXX.wav')
+ipd.Audio(output_wav_path3)
+print(first_asr_model.transcribe(paths2audio_files=[output_wav_path1,
+output_wav_path2,
+output_wav_path3
+]))
+````   
+- In order to loop through a folder and save results into csv we have made another interference script :- 
+````python
+import os
+import pandas as pd
+from nemo.collections.asr.models import EncDecCTCModelBPE
+
+# Initialize the ASR model
+asr_model = EncDecCTCModelBPE.restore_from(restore_path="FinalAmir.nemo")
+
+# Directory containing WAV files
+audio_dir = "/content/test"
+
+# List all WAV files in the directory
+audio_files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith('.wav')]
+
+# Prepare a list to store transcriptions
+transcriptions = []
+
+# Transcribe each audio file
+for audio_file in audio_files:
+    audio_id = os.path.basename(audio_file).split('.')[0]
+    transcription = asr_model.transcribe([audio_file], batch_size=1)[0]
+    transcriptions.append({"audio": audio_id, "transcript": transcription})
+
+# Save the transcriptions to a CSV file
+output_df = pd.DataFrame(transcriptions)
+output_df.to_csv("transcriptions.csv", index=False, encoding='utf-8')
+
+print("Transcriptions saved to transcriptions.csv")
+
+````
+
+- We Also added in /Inference scripts , Notebook to handle dependencies installation and to make reproducing results easier . 
+
+
+## Conclusion 
+In this project, we developed an advanced speech recognition model tailored for the Egyptian dialect using the Citrinet architecture and Byte Pair Encoding (BPE) for tokenization. By leveraging the strengths of BPE, we achieved a balanced and efficient vocabulary representation, which significantly contributed to the model's performance.
+
+Our experiments state a good start for others to build on them. While this is a promising start, we believe there is substantial room for improvement. Future enhancements could include:
+
+-   **Better Parameter Tuning**: Fine-tuning hyperparameters to optimize the model's performance.
+-   **More Training Epochs**: Extending the training duration to allow the model to learn from the data more effectively.
+-   **Adding Adapter Layers**: Incorporating adapter layers to better handle variations and nuances in the Egyptian dialect.
+
+With these potential improvements, we anticipate achieving even higher accuracy and better overall performance in our Egyptian dialect speech recognition model.
+
+
+
 # Phase 2: Speaker Recognition & Diarization
 
 ## Table of Contents
