@@ -458,17 +458,9 @@ model:
 ````
 # Phase 2: Speaker Recognition & Diarization
 
-## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Extending Model Training](#extending-model-training)
-    - [Increasing Epochs for Enhanced Performance](#increasing-epochs-for-enhanced-performance)
-    - [Implementation](#implementation)
-3. [Diarization Pipeline Using PyAnnote](#diarization-pipeline-using-pyannote)
-    - [Introduction to PyAnnote](#introduction-to-pyannote)
-    - [Decision Making: Why This Pipeline?](#decision-making-why-this-pipeline)
-    - [Pipeline Configuration](#pipeline-configuration)
-    - [Key Components of the Pipeline](#key-components-of-the-pipeline)
+
+
 
 ## Contributors
 Metanoia Labs Team:
