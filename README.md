@@ -465,6 +465,7 @@ model:
      - [Clustering Method](#clustering-method)
      - [Embedding Model](#embedding-model)
      - [Segmentation Model](#segmentation-model)
+3. [Inference Final Script](#Inference-Final-Script)
 
 ## Introduction
 
@@ -508,7 +509,7 @@ The PyAnnote diarization pipeline is an advanced system designed for segmenting 
   
   **Rationale**: The `seg.bin` model is employed to detect speech boundaries effectively. Precise segmentation is fundamental for ensuring that each speaker’s contributions are accurately isolated, which facilitates accurate clustering and identification.
 
-## Final Inference Script
+## Inference Final Script
 
 
 
