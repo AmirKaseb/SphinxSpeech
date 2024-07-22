@@ -511,6 +511,139 @@ The PyAnnote diarization pipeline is an advanced system designed for segmenting 
 
 ## Inference Final Script
 
+- There is a notebook contain all the dependecies and required libraries for the inference you would find it in ``FinalInferenceNoteBook``
+
+```python
+import os
+import json
+import torch
+from nemo.collections.asr.models import EncDecCTCModelBPE
+from pyannote.audio import Pipeline
+from pydub import AudioSegment
+import numpy as np
+
+# Initialize the ASR model
+asr_model = EncDecCTCModelBPE.restore_from(restore_path="/content/MetanoiaLabsModel.nemo")
+asr_model.eval()
+"""
+Load the ASR model from a pretrained checkpoint. This model is used for transcribing audio segments. 
+The `eval()` method sets the model to evaluation mode.
+"""
+
+# Initialize the diarization pipeline
+pipeline = Pipeline.from_pretrained("pyannote-3.1-offline/config.yaml")
+"""
+Load the speaker diarization pipeline from a pretrained configuration. This pipeline is used to segment 
+the audio into different speaker turns.
+"""
+
+# Directory containing WAV files
+audio_dir = "./"
+"""
+Specify the directory where the input WAV files are located.
+"""
+
+# Directory to save the JSON files
+output_dir = "./Finaljsonfiles"
+"""
+Specify the directory where the output JSON files will be saved.
+"""
+
+# Create the output directory if it doesn't exist
+os.makedirs(output_dir, exist_ok=True)
+"""
+Create the output directory if it does not already exist to store the resulting JSON files.
+"""
+
+# List all WAV files in the directory
+audio_files = [os.path.join(audio_dir, f) for f in os.listdir(audio_dir) if f.endswith('.wav')]
+"""
+List all WAV files in the specified directory.
+"""
+
+# Function to transcribe a segment
+def transcribe_segment(audio_segment):
+    """
+    Transcribe a given audio segment using the ASR model.
+
+    Parameters:
+        audio_segment (AudioSegment): The audio segment to be transcribed.
+
+    Returns:
+        str: The transcribed text.
+    """
+    with torch.no_grad():
+        # Convert the audio segment to a tensor
+        audio_tensor = torch.from_numpy(np.array(audio_segment.get_array_of_samples(), dtype=np.float32))
+        # Perform transcription
+        return asr_model.transcribe([audio_tensor], batch_size=1)[0]
+
+# Process each audio file
+for audio_file in audio_files:
+    audio_id = os.path.basename(audio_file).split('.')[0]
+    """
+    Extract the base name of the audio file (without extension) to use as an identifier for the JSON file.
+    """
+
+    try:
+        # Load the audio file using pydub
+        audio = AudioSegment.from_wav(audio_file)
+
+        # Diarize the audio file
+        diarization = pipeline(audio_file)
+        """
+        Perform speaker diarization on the audio file to segment it into different speaker turns.
+        """
+
+        # Prepare a list to store JSON output
+        json_output = []
+
+        # Extract and transcribe each segment
+        for turn, _, speaker in diarization.itertracks(yield_label=True):
+            start_time = turn.start
+            end_time = turn.end
+
+            # Check if the segment duration is valid
+            if end_time <= start_time:
+                print(f"Skipping invalid segment from {start_time} to {end_time} in {audio_file}")
+                continue
+            """
+            Skip segments where the end time is not greater than the start time, which indicates an invalid segment.
+            """
+
+            # Extract the audio segment using pydub
+            segment_audio = audio[start_time * 1000:end_time * 1000]  # pydub works in milliseconds
+
+            # Transcribe the audio segment
+            text = transcribe_segment(segment_audio)
+
+            # Append the transcription to the JSON output
+            json_output.append({
+                "start": start_time,
+                "end": end_time,
+                "speaker": speaker,
+                "text": text
+            })
+    
+    except Exception as e:
+        print(f"Error processing {audio_file}: {e}")
+        continue
+    """
+    Handle exceptions during processing and continue with the next file if an error occurs.
+    """
+
+    # Save the JSON output to a file
+    json_file = os.path.join(output_dir, f"{audio_id}.json")
+    with open(json_file, 'w', encoding='utf-8') as f:
+        json.dump(json_output, f, ensure_ascii=False, indent=4)
+    """
+    Save the JSON output for the current audio file to a JSON file in the specified output directory.
+    """
+
+    print(f"Processed and saved {json_file}")
+
+print("All files processed.")
+
 
 
 ## Contributors
