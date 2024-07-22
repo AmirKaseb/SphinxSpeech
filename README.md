@@ -474,6 +474,9 @@ The PyAnnote diarization pipeline is an advanced system designed for segmenting 
 
 ### Pipeline Name
 
+![Example Image](https://i.imgur.com/shrWXYh.png)
+
+
 - **Name**: `pyannote.audio.pipelines.SpeakerDiarization`
   
   **Rationale**: This pipeline is specifically developed for the task of speaker diarization, which involves separating and identifying speakers in audio recordings. Its design is optimized for handling the complexities of speaker variability and recording conditions.
@@ -482,11 +485,16 @@ The PyAnnote diarization pipeline is an advanced system designed for segmenting 
 
 #### Clustering Method
 
+![Example Image](https://tech.skit.ai/assets/images/posts/speaker-diarization/diarization_clustering.jpg)
+
+
 - **Method**: `AgglomerativeClustering`
   
   **Rationale**: Agglomerative Clustering is used due to its ability to dynamically group speech segments based on similarity without requiring a fixed number of clusters. This flexibility is essential for adapting to diverse audio data and accurately identifying speaker boundaries.
 
 #### Embedding Model
+
+
 
 - **Model**: `pyannote-3.1-offline/vox.bin`
   
@@ -494,11 +502,13 @@ The PyAnnote diarization pipeline is an advanced system designed for segmenting 
 
 #### Segmentation Model
 
+![Example Image](https://huggingface.co/collinbarnwell/pyannote-segmentation-30/resolve/main/example.png)
+
 - **Model**: `pyannote-3.1-offline/seg.bin`
   
   **Rationale**: The `seg.bin` model is employed to detect speech boundaries effectively. Precise segmentation is fundamental for ensuring that each speaker’s contributions are accurately isolated, which facilitates accurate clustering and identification.
 
-
+## Final Inference Script
 
 
 
