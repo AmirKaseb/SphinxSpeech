@@ -545,6 +545,8 @@ trainer.fit(first_asr_model)
 
 - We Had Make another impovements like better parameters tuning and adding data augementation as a parameter also trying to train only parts of data not the full data and to use different tactics  , We Continued training our model for another 100 epoch , So We reached 200 epoch , You can find all versions of models in **/Model** but the best one is **FinalAmir.Nemo** which was used to submit our final submission with   Mean Levenshtein Distance **13.680764** We still think we can improve this results by adding more data for better generalization on Egyptian Dialect .
 
+- We had made some improvement for phase 2 , and added another 100 epoch to the ASR Model which is named ``MetanoiaLabsModel.nemo``
+
 - To Load the model and continue training We Used built-in nemo function  
 
 ````python
@@ -559,6 +561,7 @@ restored_model = nemo_asr.models.EncDecCTCModelBPE.restore_from("./amir.nemo")
 | amir.nemo        | 100    | 21.074739                 |
 | amir2.nemo       | 150    | 14.396292                 |
 | FinalAmir.nemo   | 200    | 13.680764                 |
+| MetanoiaLabs.nemo| 300    | wasn't calculated         |
 
 
 
