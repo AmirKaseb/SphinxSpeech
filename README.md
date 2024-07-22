@@ -458,7 +458,54 @@ model:
 ````
 # Phase 2: Speaker Recognition & Diarization
 
+## Table of Contents
 
+1. [Introduction](#introduction)
+2. [Pipeline Configuration](#pipeline-configuration)
+   - [Pipeline Name](#pipeline-name)
+   - [Key Components](#key-components)
+     - [Clustering Method](#clustering-method)
+     - [Embedding Model](#embedding-model)
+     - [Segmentation Model](#segmentation-model)
+3. [Conclusion](#conclusion)
+
+## Introduction
+
+The PyAnnote diarization pipeline is an advanced system designed for segmenting audio recordings and identifying different speakers. This document provides an overview of the pipeline’s configuration, highlighting the technical decisions that enhance its performance.
+
+## Pipeline Configuration
+
+### Pipeline Name
+
+- **Name**: `pyannote.audio.pipelines.SpeakerDiarization`
+  
+  **Rationale**: This pipeline is specifically developed for the task of speaker diarization, which involves separating and identifying speakers in audio recordings. Its design is optimized for handling the complexities of speaker variability and recording conditions.
+
+### Key Components
+
+#### Clustering Method
+
+- **Method**: `AgglomerativeClustering`
+  
+  **Rationale**: Agglomerative Clustering is used due to its ability to dynamically group speech segments based on similarity without requiring a fixed number of clusters. This flexibility is essential for adapting to diverse audio data and accurately identifying speaker boundaries.
+
+#### Embedding Model
+
+- **Model**: `pyannote-3.1-offline/vox.bin`
+  
+  **Rationale**: The `vox.bin` embedding model is chosen for its capability to generate high-quality speaker embeddings. These embeddings provide detailed speaker features, which are critical for distinguishing between different speakers with high accuracy.
+
+#### Segmentation Model
+
+- **Model**: `pyannote-3.1-offline/seg.bin`
+  
+  **Rationale**: The `seg.bin` model is employed to detect speech boundaries effectively. Precise segmentation is fundamental for ensuring that each speaker’s contributions are accurately isolated, which facilitates accurate clustering and identification.
+
+## Conclusion
+
+The configuration of the PyAnnote diarization pipeline is designed to ensure optimal performance in speaker segmentation and identification. By leveraging sophisticated models and clustering techniques, this pipeline provides a robust solution for analyzing complex audio recordings and distinguishing multiple speakers with high precision.
+
+   
 
 
 
