@@ -676,6 +676,10 @@ In our quest to enhance the accuracy and efficiency of Arabic diarization, we fa
 
 ## Why PyAnnote?
 
+![Example Image](https://mohitmayank.com/a_lazy_data_science_guide/imgs/audio_speakerdiarization_intro.png)
+
+
+
 ### 1. **Specialized Diarization Capabilities**
 
 PyAnnote is renowned for its robust diarization features, especially in the context of speaker diarization. Its focus on clustering and segmentation, combined with pre-trained models, made it an attractive choice for our task. PyAnnote's configuration options and modular design provided the flexibility needed for fine-tuning on our specific dataset of Arabic audio.
