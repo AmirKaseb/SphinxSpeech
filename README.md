@@ -668,7 +668,7 @@ With these potential improvements, we anticipate achieving even higher accuracy 
      - [Segmentation Model](#segmentation-model)
 3. [Inference Final Script](#Inference-Final-Script)
 
-#Why We Chose PyAnnote Over NeMo for Our Arabic Diarization
+# Why We Chose PyAnnote Over NeMo for Our Arabic Diarization
 
 ## Introduction
 
@@ -714,10 +714,6 @@ While our journey with NeMo was filled with valuable learning experiences, PyAnn
 
 By choosing PyAnnote, we have been able to leverage its strengths to enhance our diarization pipeline, ultimately leading to more accurate and reliable results for our Arabic audio data.
 
-
-## Introduction
-
-The PyAnnote diarization pipeline is an advanced system designed for segmenting audio recordings and identifying different speakers. This document provides an overview of the pipeline’s configuration, highlighting the technical decisions that enhance its performance.
 
 ## Pipeline Configuration
 
