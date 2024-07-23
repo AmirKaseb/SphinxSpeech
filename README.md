@@ -668,6 +668,53 @@ With these potential improvements, we anticipate achieving even higher accuracy 
      - [Segmentation Model](#segmentation-model)
 3. [Inference Final Script](#Inference-Final-Script)
 
+#Why We Chose PyAnnote Over NeMo for Our Arabic Diarization
+
+## Introduction
+
+In our quest to enhance the accuracy and efficiency of Arabic diarization, we faced a pivotal decision: whether to use PyAnnote or NeMo for our needs. Both tools offer powerful capabilities, but after careful consideration, we opted for PyAnnote. This decision was driven by several factors specific to our project requirements.
+
+## Why PyAnnote?
+
+### 1. **Specialized Diarization Capabilities**
+
+PyAnnote is renowned for its robust diarization features, especially in the context of speaker diarization. Its focus on clustering and segmentation, combined with pre-trained models, made it an attractive choice for our task. PyAnnote's configuration options and modular design provided the flexibility needed for fine-tuning on our specific dataset of Arabic audio.
+
+### 2. **Agglomerative Clustering**
+
+One of the key reasons for choosing PyAnnote was its support for Agglomerative Clustering. This method aligns well with our needs for precise speaker segmentation and clustering. The ability to adjust clustering parameters and utilize embeddings suited our requirements perfectly.
+
+### 3. **Ease of Integration**
+
+PyAnnote’s integration capabilities with existing pipelines were another factor in our decision. Its compatibility with our current tools and workflows facilitated a smoother implementation process, allowing us to focus more on fine-tuning and less on compatibility issues.
+
+## Our Journey with NeMo: The Quest to Fine-Tune
+
+### The Challenge
+
+Initially, we were excited about NeMo's potential for our diarization tasks. NeMo, with its extensive range of pre-trained models and fine-tuning capabilities, seemed like a promising solution. We embarked on an ambitious journey to fine-tune the Oracle NeMo model, hoping it would cater to our Arabic diarization needs.
+
+### The Roadblocks
+
+However, the journey was not without its challenges. Despite our best efforts, we encountered several roadblocks:
+
+- **Complexity in Fine-Tuning:** The fine-tuning process for NeMo proved to be more complex than anticipated. The need for extensive computational resources and the intricacies of adjusting model parameters added layers of difficulty.
+  
+- **Arabic Language Adaptation:** Adapting NeMo for the Arabic language, particularly Egyptian Arabic, presented additional hurdles. The models and techniques available did not align seamlessly with our specific dialectal needs, leading to less-than-optimal results.
+
+- **Model Overfitting:** Our attempts to overfit the model to our dataset led to issues with generalization. Despite various adjustments, the model struggled to achieve the accuracy we aimed for.
+
+### The Turning Point
+
+After considerable effort and evaluation, it became clear that PyAnnote's specialized diarization capabilities were better suited for our needs. The decision to switch was driven by the need for more reliable and accurate results within our specific context.
+
+## Conclusion
+
+While our journey with NeMo was filled with valuable learning experiences, PyAnnote ultimately emerged as the more effective tool for our Arabic diarization tasks. Its specialized features, ease of integration, and alignment with our specific requirements made it the ideal choice for achieving our goals.
+
+By choosing PyAnnote, we have been able to leverage its strengths to enhance our diarization pipeline, ultimately leading to more accurate and reliable results for our Arabic audio data.
+
+
 ## Introduction
 
 The PyAnnote diarization pipeline is an advanced system designed for segmenting audio recordings and identifying different speakers. This document provides an overview of the pipeline’s configuration, highlighting the technical decisions that enhance its performance.
