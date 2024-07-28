@@ -900,6 +900,7 @@ Metanoia Labs Team:
 - [Islam Ibrahim](https://www.linkedin.com/in/islamibr29/)
 - [Perihane Tarek](https://www.linkedin.com/in/perihane-tarek/)
 - [Mohamed Tarek](https://www.linkedin.com/in/mohamed-tarek-a67275249/)
+- [Hazem Hamdy](https://www.facebook.com/hazem.hamdy.524)
 
 Supervision Acknowledge:
 - [Bassem Mokhtar](https://www.linkedin.com/in/bassem-mokhtar-8251a512/)
